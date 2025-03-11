@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: fedora-nvidia-snp
+  annotations:
+    #cdi.k8s.io/gpu: "nvidia.com/pgpu=0"
+    io.katacontainers.config.hypervisor.default_memory: "16384"
+    io.katacontainers.config.hypervisor.kernel_params: "amd_iommu=on iommu=pt modprobe.blacklist=nouveau"
+spec:
+  runtimeClassName: kata-nvidia-gpu-cc
+  containers:
+    - name: fedora-nvidia-snp
+      image: "registry.fedoraproject.org/fedora"
+      command:
+        - /bin/bash
+        - -c
+        - |
+          sleep 3600
+      resources:
+        limits:
+          nvidia.com/GH100_H100_PCIE: 1
