@@ -74,6 +74,7 @@ deploy_nvidia_operator || exit 1
 deploy_nvidia_cluster_policy || exit 1
 
 oc apply -f runtimeclass/kata-nvidia-gpu-cc.yaml || exit 1
+oc apply -f runtimeclass/kata-nvidia-gpu.yaml || exit 1
 
 echo "=== Finished successfully ==="
 echo "=== Now, run ./configure_node.sh on each node =="

@@ -2,8 +2,8 @@
 kind: RuntimeClass
 apiVersion: node.k8s.io/v1
 metadata:
-    name: kata-qemu-nvidia-gpu
-handler: kata-qemu-nvidia-gpu
+    name: kata-nvidia-gpu
+handler: kata-nvidia-gpu
 overhead:
     podFixed:
         memory: "160Mi"
