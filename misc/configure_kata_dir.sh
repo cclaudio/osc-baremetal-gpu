@@ -3,7 +3,6 @@
 KATA_DIR=${1}
 
 [ -d ${KATA_DIR} ] || { echo "${KATA_DIR} not valid"; exit 1; }
-read -p "Configure ${KATA_DIR} [y/N]?" confirm && [[ $confirm == [yY] ]] || exit 1
 
 echo "Fix /opt/kata symlink"
 [ -f /opt/kata ] && sudo rm /opt/kata
