@@ -1,0 +1,142 @@
+{
+  "apiVersion": "nvidia.com/v1",
+  "kind": "ClusterPolicy",
+  "metadata": {
+    "name": "gpu-cluster-policy"
+  },
+  "spec": {
+    "operator": {
+      "defaultRuntime": "crio",
+      "use_ocp_driver_toolkit": true,
+      "initContainer": {}
+    },
+    "sandboxWorkloads": {
+      "enabled": true,
+      "defaultWorkload": "vm-passthrough"
+    },
+    "driver": {
+      "enabled": false,
+      "useNvidiaDriverCRD": false,
+      "useOpenKernelModules": false,
+      "upgradePolicy": {
+        "autoUpgrade": true,
+        "drain": {
+          "deleteEmptyDir": false,
+          "enable": false,
+          "force": false,
+          "timeoutSeconds": 300
+        },
+        "maxParallelUpgrades": 1,
+        "maxUnavailable": "25%",
+        "podDeletion": {
+          "deleteEmptyDir": false,
+          "force": false,
+          "timeoutSeconds": 300
+        },
+        "waitForCompletion": {
+          "timeoutSeconds": 0
+        }
+      },
+      "repoConfig": {
+        "configMapName": ""
+      },
+      "certConfig": {
+        "name": ""
+      },
+      "licensingConfig": {
+        "nlsEnabled": true,
+        "configMapName": ""
+      },
+      "virtualTopology": {
+        "config": ""
+      },
+      "kernelModuleConfig": {
+        "name": ""
+      }
+    },
+    "dcgmExporter": {
+      "enabled": false,
+      "config": {
+        "name": ""
+      },
+      "serviceMonitor": {
+        "enabled": true
+      }
+    },
+    "dcgm": {
+      "enabled": false
+    },
+    "daemonsets": {
+      "updateStrategy": "RollingUpdate",
+      "rollingUpdate": {
+        "maxUnavailable": "1"
+      }
+    },
+    "devicePlugin": {
+      "enabled": false,
+      "config": {
+        "name": "",
+        "default": ""
+      },
+      "mps": {
+        "root": "/run/nvidia/mps"
+      }
+    },
+    "gfd": {
+      "enabled": true
+    },
+    "migManager": {
+      "enabled": false
+    },
+    "nodeStatusExporter": {
+      "enabled": true
+    },
+    "mig": {
+      "strategy": "single"
+    },
+    "toolkit": {
+      "enabled": false
+    },
+    "validator": {
+      "plugin": {
+        "env": [
+          {
+            "name": "WITH_WORKLOAD",
+            "value": "false"
+          }
+        ]
+      }
+    },
+    "vgpuManager": {
+      "enabled": false
+    },
+    "vgpuDeviceManager": {
+      "enabled": false
+    },
+    "sandboxDevicePlugin": {
+      "enabled": true
+    },
+    "vfioManager": {
+      "enabled": true
+    },
+    "gds": {
+      "enabled": false
+    },
+    "gdrcopy": {
+      "enabled": false
+    },
+    "cdi": {
+      "default": false,
+      "enabled": true
+    },
+    "kataManager": {
+      "config": {
+        "artifactsDir": "/opt/nvidia-gpu-operator/artifacts/runtimeclasses"
+      },
+      "enabled": false
+    },
+    "vfioManager": {
+      "enabled": true
+    }
+  }
+}
