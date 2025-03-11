@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: cuda-kata-nvidia-gpu
+  annotations:
+    io.katacontainers.config.hypervisor.kernel_params: "amd_iommu=on iommu=pt modprobe.blacklist=nouveau"
+spec:
+  runtimeClassName: kata-nvidia-gpu
+  containers:
+    - name: cuda-kata-nvidia-gpu
+      image: "nvcr.io/nvidia/k8s/cuda-sample:vectoradd-cuda12.5.0-ubi8"
+      command:
+        - /bin/bash
+        - -c
+        - |
+          sleep 3600
+      resources:
+        limits:
+          nvidia.com/GH100_H100_PCIE: 1
